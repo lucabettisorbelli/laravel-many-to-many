@@ -13,7 +13,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required|min:4|max:160",
+            "description" => "max:65535",
+            "image" => "url|max:255",
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "title.required" => "Ogni post deve avere un titolo"
         ];
     }
 }
