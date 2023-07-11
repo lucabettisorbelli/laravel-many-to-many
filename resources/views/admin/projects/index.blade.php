@@ -9,7 +9,8 @@
                 <img class="card-img-top" src="{{ $project->image }}" alt="{{ $project->title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $project->title }}</h5>
-                    <a href="{{ route("admin.project.show", $project) }}" class="btn btn-primary">View details</a>
+                    <h6 class="card-title">{{ $project->description }}</h6>
+                    <a href="{{ route("admin.projects.show", $project) }}" class="btn btn-primary">View details</a>
                 </div>
             </div>
         @endforeach
