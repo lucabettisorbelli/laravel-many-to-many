@@ -22,8 +22,13 @@
             <label for="title">Titolo</label>
             <input type="text" name="title" id="title" value="{{ old("title") }}" class="form-control mb-4">
 
-            <label for="title">Tipo</label>
-            <input type="text" name="type" id="type" value="{{ old("type") }}" class="form-control mb-4">
+            <label for="category_id">Tipo</label>
+            <select class="form-control mb-4" name="type_id" id="type_id">
+                <option value="" selected disabled>Seleziona il tipo</option>
+                @foreach ($types as $type)
+                    <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
+            </select>
 
             <label for="description">Descrizione</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control mb-4">{{ old("description") }}</textarea>

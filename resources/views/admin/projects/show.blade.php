@@ -6,6 +6,7 @@
     <div class="row justify-content-between">
         <h1>{{ $project->title }}</h1>
         <p>{{ $project->description }}</p>
+        <h2>tipo: {{ $project->type ? $project->type->name : "Senza tipo" }}</h2>
         <img src="{{ $project->image }}" alt="{{ $project->title }}" />
     </div>
 </div>
