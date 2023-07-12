@@ -27,13 +27,14 @@ class UpdateProjectRequest extends FormRequest
             "title" => "required|min:4|max:160",
             "description" => "max:65535",
             "image" => "url|max:255",
+            "type" => ["nullable", "exists:types,id"]
         ];
     }
 
     public function messages()
     {
         return [
-            "title.required" => "Ogni post deve avere un titolo"
+            "title.required" => "Ogni progetto deve avere un titolo"
         ];
     }
 }
