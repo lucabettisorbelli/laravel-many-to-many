@@ -22,6 +22,9 @@
             <label for="title">Titolo</label>
             <input type="text" name="title" id="title" value="{{ old("title") }}" class="form-control mb-4">
 
+            <label for="title">Tipo</label>
+            <input type="text" name="type" id="type" value="{{ old("type") }}" class="form-control mb-4">
+
             <label for="description">Descrizione</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control mb-4">{{ old("description") }}</textarea>
 

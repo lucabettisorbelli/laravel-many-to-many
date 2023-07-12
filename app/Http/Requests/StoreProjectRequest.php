@@ -34,7 +34,7 @@ class StoreProjectRequest extends FormRequest
     public function messages()
     {
         return [
-            "title.required" => "Ogni post deve avere un titolo"
+            "title.required" => "Ogni progetto deve avere un titolo"
         ];
     }
 }
