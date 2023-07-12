@@ -30,6 +30,14 @@
                 @endforeach
             </select>
 
+            <label for="technology_id">Tecnologia</label>
+            <select class="form-control mb-4" name="technology_id" id="technology_id">
+                <option value="" selected disabled>Seleziona la tecnologia</option>
+                @foreach ($technologies as $technology)
+                    <option value="{{$technology->id}}">{{$technology->name}}</option>
+                @endforeach
+            </select>
+
             <label for="description">Descrizione</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control mb-4">{{ old("description") }}</textarea>
 

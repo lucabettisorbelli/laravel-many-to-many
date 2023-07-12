@@ -15,8 +15,12 @@ class Project extends Model
         "image"
     ];
 
-    public function type()
+    public function types()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function technologies() {
+        return $this->belongsToMany(technology::class);
     }
 }
