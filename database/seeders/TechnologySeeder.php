@@ -18,5 +18,6 @@ class TechnologySeeder extends Seeder
         Technology::create(['name' => 'PHP']);
         Technology::create(['name' => 'JavaScript']);
         Technology::create(['name' => 'Laravel']);
+        Technology::create(['name' => 'Vue']);
     }
 }

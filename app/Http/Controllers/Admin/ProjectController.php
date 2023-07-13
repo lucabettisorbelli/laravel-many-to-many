@@ -45,16 +45,16 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $project = new Project();
-        $project->fill($data);
-        $project->save();
+        $newProject = new Project();
+        $newProject->fill($data);
+        $newProject->save();
 
-        // Sincronizzazione delle relazioni con le tecnologie
-        if (isset($data->technologies)) {
-            $project->technologies()->sync($data->technologies);
+
+        if (isset($data['technologies'])) {
+            $newProject->technologies()->attach($data['technologies']);
         }
 
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', $newProject);
     }
 
     /**
@@ -76,7 +76,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $types = Type::all();
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -88,19 +90,18 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        // Validazione dei dati in input
         $data = $request->validated();
 
-        // Aggiornamento dei dati del progetto
         $project->update($data);
 
-        // Sincronizzazione delle relazioni con le tecnologie
-        if (isset($data['technologies'])) {
-            $project->technologies()->sync($data['technologies']);
-        }
+        //Eliminiamo il collegamento con eventuali tags e poi lo ricreiamo
+        // $post->tags()->detach();
+        // $post->tags()->attach( $data->tags );
 
-        // Reindirizzamento alla pagina del progetto aggiornato
-        return redirect()->route('admin.projects.show', $project);
+        //Oppure facciamo tutto in un unico comando
+        $project->technologies()->sync( $data->technologies );
+
+        return to_route("admin.projects.show", $project);
     }
 
     /**
@@ -111,6 +112,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        
+        $project->delete();
+        return redirect()->route('admin.projects.index');
     }
 }

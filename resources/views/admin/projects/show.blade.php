@@ -7,7 +7,12 @@
         <h1>{{ $project->title }}</h1>
         <p><h2>Descrizione:</h2>{{ $project->description }}</p>
         <h2>tipo: {{ $project->type ? $project->type->name : "Senza tipo" }}</h2>
-        <h2>tecnologia: {{ $project->technology ? $project->technology->name : "Senza tecnologia" }}</h2>
+        <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Cancella progetto</button>
+        </form>
+        
         <img src="{{ $project->image }}" alt="{{ $project->title }}" />
     </div>
 </div>
