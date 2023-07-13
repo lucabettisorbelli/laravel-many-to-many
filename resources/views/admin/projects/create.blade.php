@@ -32,7 +32,7 @@
 
             <label for="technology_id">Tecnologia</label>
             <select class="form-control mb-4" name="technology_id" id="technology_id">
-                <option value="" selected disabled>Seleziona la tecnologia</option>
+                <option value="technology_id[]" selected disabled>Seleziona la tecnologia</option>
                 @foreach ($technologies as $technology)
                     <option value="{{$technology->id}}">{{$technology->name}}</option>
                 @endforeach

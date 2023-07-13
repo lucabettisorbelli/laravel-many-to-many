@@ -12,7 +12,9 @@ class Project extends Model
     protected $fillable = [
         "title",
         "description",
-        "image"
+        "image",
+        "type_id",
+        "technology_id"
     ];
 
     public function type()
@@ -21,6 +23,6 @@ class Project extends Model
     }
 
     public function technologies() {
-        return $this->belongsToMany(technology::class);
+        return $this->belongsToMany(Technology::class);
     }
 }

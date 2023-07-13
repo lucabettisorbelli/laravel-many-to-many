@@ -45,11 +45,16 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $newProject = new Project();
-        $newProject->fill($data);
-        $newProject->save();
+        $project = new Project();
+        $project->fill($data);
+        $project->save();
 
-        return to_route('admin.projects.show', $newProject);
+        // Sincronizzazione delle relazioni con le tecnologie
+        if (isset($data->technologies)) {
+            $project->technologies()->sync($data->technologies);
+        }
+
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
@@ -83,7 +88,19 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        // Validazione dei dati in input
+        $data = $request->validated();
+
+        // Aggiornamento dei dati del progetto
+        $project->update($data);
+
+        // Sincronizzazione delle relazioni con le tecnologie
+        if (isset($data['technologies'])) {
+            $project->technologies()->sync($data['technologies']);
+        }
+
+        // Reindirizzamento alla pagina del progetto aggiornato
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
@@ -94,6 +111,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        
     }
 }

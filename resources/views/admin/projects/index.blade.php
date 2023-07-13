@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $project->title }}</h5>
                     <h6 class="card-title">{{ $project->description }}</h6>
-                    <h6 class="card-title">{{ $project->type_id }}</h6>
+                    <h6 class="card-title">{{ $project->type?->name }}</h6>
+                    <h6>{{$project->technology}}</h6>
                     <a href="{{ route("admin.projects.show", $project) }}" class="btn btn-primary">View details</a>
                 </div>
             </div>
