@@ -18,6 +18,7 @@
 
         <form action="{{ route("admin.projects.store") }}" method="POST" class="needs-validation">
             @csrf
+            
 
             <label for="title">Titolo</label>
             <input type="text" name="title" id="title" value="{{ old("title") }}" class="form-control mb-4">
@@ -30,13 +31,12 @@
                 @endforeach
             </select>
 
-            <label for="technology_id">Tecnologia</label>
-            <select class="form-control mb-4" name="technology_id" id="technology_id">
-                <option value="technology_id[]" selected disabled>Seleziona la tecnologia</option>
-                @foreach ($technologies as $technology)
-                    <option value="{{$technology->id}}">{{$technology->name}}</option>
-                @endforeach
-            </select>
+            @foreach ($technologies as $i => $technology)
+            <div class="form-check">
+                <input type="checkbox" value="{{$technology->id}}" name="technology[]" id="technologies{{$i}}" class="form-check-input" >
+                <label for="technologies{{$i}}" class="form-check-label">{{$technology->name}}</label>
+            </div>
+            @endforeach
 
             <label for="description">Descrizione</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control mb-4">{{ old("description") }}</textarea>

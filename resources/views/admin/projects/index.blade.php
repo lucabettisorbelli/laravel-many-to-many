@@ -13,6 +13,12 @@
                     <h6 class="card-title">{{ $project->type?->name }}</h6>
                     <a href="{{ route("admin.projects.show", $project) }}" class="btn btn-primary">Mostra dettagli</a>
                     <a href="{{ route("admin.projects.edit", $project) }}" class="btn btn-primary">Modifica progetto</a>
+                    <p>Tecnologie: 
+                        @forelse ($project->technologies as $technology)
+                            <span>{{$technology->name}}</span>
+                        @empty
+                            <span>Nessuna</span>
+                        @endforelse
                 </div>
             </div>
         @endforeach
