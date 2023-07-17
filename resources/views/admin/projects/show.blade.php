@@ -7,6 +7,7 @@
         <h1>{{ $project->title }}</h1>
         <p><h2>Descrizione:</h2>{{ $project->description }}</p>
         <h2>tipo: {{ $project->type ? $project->type->name : "Senza tipo" }}</h2>
+        <h2>Tecnologie:</h2>
         <ul>
             @foreach ($project->technologies as $technology)
             <li>{{$technology->name}}</li>

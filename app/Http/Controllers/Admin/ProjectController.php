@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $newProject->fill($data);
         $newProject->save();
         
-        // $newProject->technologies()->attach($data['technologies']);
+        $newProject->technologies()->sync($data['technologies']);
 
 
         return redirect()->route('admin.projects.show', $newProject);

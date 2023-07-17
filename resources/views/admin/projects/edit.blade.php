@@ -23,11 +23,10 @@
 
         <div>
             <label for="technologies">Technologies</label>
-            <select name="technologies[]" id="technologies" multiple>
-                @foreach ($technologies as $technology)
-                    <option value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $technology->name }}</option>
-                @endforeach
-            </select>
+            @foreach ($technologies as $technology)
+                <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}>
+                <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+            @endforeach
         </div>
 
         <div>
